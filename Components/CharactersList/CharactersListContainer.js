@@ -8,8 +8,7 @@ import {
   Alert,
   TouchableOpacity
 } from 'react-native';
-
-import CharactersListComponent from './Components/CharactersList/CharactersListComponent';
+import CharactersListComponent from './CharactersListComponent.js';
 
 export default class CharactersListContainer extends Component {
 
@@ -59,41 +58,15 @@ export default class CharactersListContainer extends Component {
 
     if(this.state.isLoading) {
       return(
-        <View style={styles.mainView}>
-        <FlatList
-          data={this.state.dataSource}
-          renderItem={({item}) =>
-            <View style= {styles.cellView}>
-              <Text>{item.name}, {item.mass}</Text>
-            </View>      
-          }
-          onEndReached={this.onPageEnd}
-
-          keyExtractor={(item, index) => item + index }
-        />
-          <ActivityIndicator/>
-        </View>
+          <View>
+            <CharactersListComponent dataSource={this.state.dataSource}  onPageEnd={this.onPageEnd}/>  
+            <ActivityIndicator/>
+          </View>
       )
     }
 
     return(
-      <CharactersListComponent dataSource={this.state.dataSourc} />
-    );
+      <CharactersListComponent dataSource={this.state.dataSource} onPageEnd={this.onPageEnd}/>
+    )
   }
 }
-
-const styles = StyleSheet.create({
-
-  mainView: {
-    flex: 1,
-    paddingTop: 20
-  },
-
-  cellView: {
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 10,
-    paddingRight: 10
-  }
-
-})
