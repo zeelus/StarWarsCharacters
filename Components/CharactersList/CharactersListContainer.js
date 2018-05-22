@@ -9,6 +9,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import CharactersListComponent from './Components/CharactersList/CharactersListComponent';
+
 export default class CharactersListContainer extends Component {
 
   static navigationOptions = {
@@ -42,7 +44,6 @@ export default class CharactersListContainer extends Component {
   }
   
   onPageEnd = () => {
-    //this.downloadData(this.state.page + 1);
     this.downloadData()
   }
 
@@ -76,20 +77,7 @@ export default class CharactersListContainer extends Component {
     }
 
     return(
-      <View style={styles.cellView}>
-        <FlatList
-          data={this.state.dataSource}
-          renderItem={({item}) =>
-            <TouchableOpacity onPress={this.onPress}>
-              <View style= {styles.cellView}>
-                <Text>{item.name}</Text>
-              </View>
-            </TouchableOpacity>
-          }
-          onEndReached= {this.onPageEnd}
-          keyExtractor= {(item, index) => item + index }
-        />
-      </View>
+      <CharactersListComponent dataSource={this.state.dataSourc} />
     );
   }
 }
