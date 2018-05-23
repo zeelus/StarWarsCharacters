@@ -45,13 +45,14 @@ export default class CharactersListContainer extends Component {
   onPageEnd = () => {
     this.downloadData()
   }
-
-  onPress = () => {
-    Alert.alert("press")
-  }
-
+  
   componentDidMount() {
     this.downloadData();
+  }
+
+  openWith = (item) => {
+    const { navigate } = this.props.navigation;
+    navigate("Detail", {item: item});
   }
 
   render() {
@@ -59,14 +60,14 @@ export default class CharactersListContainer extends Component {
     if(this.state.isLoading) {
       return(
           <View>
-            <CharactersListComponent dataSource={this.state.dataSource}  onPageEnd={this.onPageEnd}/>  
+            <CharactersListComponent dataSource={this.state.dataSource}  onPageEnd={this.onPageEnd} onPress={this.openWith}/>  
             <ActivityIndicator/>
           </View>
       )
     }
 
     return(
-      <CharactersListComponent dataSource={this.state.dataSource} onPageEnd={this.onPageEnd}/>
+      <CharactersListComponent dataSource={this.state.dataSource} onPageEnd={this.onPageEnd} onPress={this.openWith}/>
     )
   }
 }

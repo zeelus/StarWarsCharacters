@@ -12,13 +12,11 @@ export default class CharactesListCell extends Component {
         super(props);
     }
 
-    // onPress = () => {
-    //     this.props.onPress(this.props.item);
-    // }
-
     render() {
         return(
-            <TouchableOpacity onPress={this.props.onPress}>
+            <TouchableOpacity onPress={() => {
+                this.props.onPress(this.props.item);
+            }}>
             <View style= {styles.cellView}>
               <Text>{this.props.item.name}</Text>
             </View>

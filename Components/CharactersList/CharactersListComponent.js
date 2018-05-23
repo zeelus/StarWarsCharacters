@@ -8,16 +8,18 @@ import {
   Alert,
   TouchableOpacity
 } from 'react-native';
+
+import {
+  StackNavigator,
+} from 'react-navigation';
+
 import CharactesListCell from './CharactersListCell.js';
+
 
 export default class CharactersListComponent extends Component {
 
     constructor(props) {
-        super(props);
-    }
-
-    onPress = (item) => {
-        Alert.alert(item.name);
+      super(props);
     }
 
     render() {
@@ -26,9 +28,7 @@ export default class CharactersListComponent extends Component {
             <FlatList
               data={this.props.dataSource}
               renderItem={({item}) =>
-                <CharactesListCell item={item}  onPress={() => {
-                  this.onPress(item)
-                }} />
+                <CharactesListCell item={item}  onPress={this.props.onPress} />
               }
               onEndReached= {this.props.onPageEnd }
               keyExtractor= {(item, index) => item + index }
