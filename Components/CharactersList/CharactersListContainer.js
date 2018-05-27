@@ -52,7 +52,7 @@ export default class CharactersListContainer extends Component {
 
   openWith = (item) => {
     const { navigate } = this.props.navigation;
-    navigate("Detail", {item: item});
+    navigate("Detail", {item: item, title: item.name});
   }
 
   render() {
